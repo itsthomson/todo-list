@@ -5,4 +5,6 @@
             :url "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                    [ring "1.4.0"]]
-  :main todo-list.core)
+  :main todo-list.core
+  :profiles {:dev
+                   {:main todo-list.core/-dev-main}})
