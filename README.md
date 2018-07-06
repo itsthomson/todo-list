@@ -16,6 +16,7 @@ the tutorial and figure out how to create a to-do app myself.
 
 ## To-do (for this to-do list app)
 
-* Set up Datomic
+* Set up Datomic (harder than I thought--looks like there's little support on
+  GCP)
 * Add a task
 * Complete a task
