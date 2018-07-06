@@ -1,22 +1,16 @@
 # todo-list
 
-I'm learning Clojure and this is a To-do list, per [this
-tutorial](https://practicalli.github.io/clojure-webapps/create-a-project/update-project-details.html).
+I'm learning Clojure and this is a To-do list. I'm kinda mashing together these
+tutorials:
 
-## CircleCI and GAE
+* [Creating a Webapp in Clojure](https://practicalli.github.io/clojure-webapps/create-a-project/update-project-details.html),
+* [Deploying Clojure Applications to GAE using CircleCI for CI/CD](https://circleci.com/blog/deploying-clojure-applications-to-google-cloud/)
+* [Running Datomic on GCE and Google Cloud
+  SQL](https://groups.google.com/forum/#!topic/datomic/M9v1ssUbT9Q/discussion) 
 
-I'm also combining the above tutorial on creating a to-do list with [this
-tutorial](https://circleci.com/blog/deploying-clojure-applications-to-google-cloud/)
-on continuous deployment to Google App Engine using CircleCI.
-
-## lol
-
-It looks like the first link is an incomplete tutorial. I'm going to divert from
-the tutorial and figure out how to create a to-do app myself.
 
 ## To-do (for this to-do list app)
 
-* Set up Datomic (harder than I thought--looks like there's little support on
-  GCP)
+* Set up Datomic (harder than I thought--looks like there's little support)
 * Add a task
 * Complete a task
