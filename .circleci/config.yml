@@ -1,42 +1,72 @@
-# Clojure CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-clojure/ for more details
-#
-version: 2
+version: 2.0
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/clojure:lein-2.7.1
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
-
-    environment:
-      LEIN_ROOT: "true"
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-    
+      - image: clojure:alpine
+    working_directory: /home/circleci/compojure-app
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "project.clj" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - compojure-app-jars-v1-{{ checksum "project.clj" }}
 
-      - run: lein deps
+      - run:
+          name: Download dependencies
+          command: lein deps
+          working_directory: /home/circleci/compojure-app
+
+      - run:
+          name: Run server tests
+          command: lein test
+          working_directory: /home/circleci/compojure-app
+      - save_cache:
+          key: compojure-app-jars-v1-{{ checksum "project.clj" }}
+          paths:
+            - /home/circleci/.m2
+
+  deploy:
+    filters:
+      branches:
+        only:
+          - master
+    docker:
+      - image: google/cloud-sdk:alpine
+    working_directory: /home/circleci/compojure-app
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - compojure-app-jars-v1-{{ checksum "project.clj" }}
+            - compojure-app-machine-jars-v1
+
+      - run:
+          name: Authenticate with Google Cloud
+          command: |
+            echo $GCLOUD_KEY_JSON > /home/circleci/.gcloud-key
+            gcloud auth activate-service-account --key-file=/home/circleci/.gcloud-key
+
+      - run:
+          name: Deploy compojure-app to Google App Engine
+          command: |
+            gcloud config set project sakura-20180705
+            gcloud app deploy
+
+      - run:
+          name: discarding all changes
+          command: git checkout -- .
 
       - save_cache:
+          key: compojure-app-jars-v1-{{ checksum "project.clj" }}
           paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "project.clj" }}
-        
-      # run tests!
-      - run: lein test
+            - /home/circleci/.m2
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build

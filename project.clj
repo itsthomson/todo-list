@@ -4,8 +4,10 @@
   :license {:name "MIT License"
             :url "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                   [ring "1.4.0"]
-                   [compojure "1.3.4"]]
+                 [ring "1.4.0"]
+                 [compojure "1.3.4"]]
+  :plugins [[lein-ring "0.9.6" :exclusions [org.clojure/clojure]]]
   :main todo-list.core
   :profiles {:dev
-                   {:main todo-list.core/-dev-main}})
+                   {:main todo-list.core/-dev-main}}
+  :ring {:handler todo-list.core/app})
