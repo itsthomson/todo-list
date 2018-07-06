@@ -1,7 +1,7 @@
-(ns todo-list.handlers
-    (:use
-      [hiccup.core]
-      [hiccup.page]))
+(ns todo-list.handlers.core
+  "Route handlers"
+  (:require [hiccup.core :refer :all]
+            [hiccup.page :refer :all]))
 
 (defn welcome
   "A ring handler to process all requests sent to the webapp"
