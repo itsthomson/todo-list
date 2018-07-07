@@ -17,13 +17,6 @@
   (not-found "<h1>This is a sample 404 page</h1>
               <p>I'm now using compojure to route stuff.</p>"))
 
-(defn -dev-main
-  "A very simple web server using Ring & Jetty that reloads code changes via the
-   development profile of Leiningen"
-  [port-number]
-  (jetty/run-jetty (wrap-reload #'app)
-       {:port (Integer. port-number)}))
-
 (defn -main
   "A very simple web server using Ring & Jetty"
   [port-number]

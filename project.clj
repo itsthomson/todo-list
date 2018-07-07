@@ -6,9 +6,11 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [ring "1.4.0"]
                  [compojure "1.3.4"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [com.datomic/client-pro "0.8.17"]]
   :plugins [[lein-ring "0.9.6" :exclusions [org.clojure/clojure]]]
   :main todo-list.core
   :profiles {:dev
-                   {:main todo-list.core/-dev-main}}
+                   {:source-paths ["src", "dev"]
+                    :main todo-list.dev}}
   :ring {:handler todo-list.core/app})
