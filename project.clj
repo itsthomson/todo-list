@@ -3,12 +3,11 @@
   :url "https://sakura-20180705.appspot.com/"
   :license {:name "MIT License"
             :url "https://opensource.org/licenses/MIT"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [ring "1.4.0"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [ring "1.6.1"]
                  [compojure "1.3.4"]
-                 [hiccup "1.0.5"]
-                 [com.datomic/client-pro "0.8.17"]]
-  :plugins [[lein-ring "0.9.6" :exclusions [org.clojure/clojure]]]
+                 [hiccup "1.0.5"]]
+  :plugins [[lein-ring "0.12.4" :exclusions [org.clojure/clojure]]]
   :main todo-list.core
   :profiles {:dev
                    {:source-paths ["src", "dev"]
