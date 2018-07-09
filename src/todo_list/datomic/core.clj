@@ -18,6 +18,14 @@
 
 (def conn (d/connect client {:db-name "todo-list"}))
 
+(defn schema-exists?
+  [uri]
+  (not
+    (empty?
+      (d/q '[:find ?e
+             :where [?e :db/ident :task/name]]
+           (-> uri d/connect d/db)))))
+
 (defn transact-schema
   "Transact the schema into Datomic"
   [conn schema-map]
