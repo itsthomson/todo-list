@@ -18,7 +18,7 @@
     :db/ident :task/description
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/doc "Task state"
+   {:db/doc "Task state - not done/done"
     :db/ident :task/state
     :db/valueType :db.type/boolean
     :db/cardinality :db.cardinality/one}
