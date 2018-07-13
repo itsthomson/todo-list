@@ -1,5 +1,5 @@
 (defproject todo-list "0.1.0-SNAPSHOT"
-  :description "A Todo List server-side webapp using Ring & Compojure"
+  :description "A Todo List server-side webapp"
   :url "https://sakura-20180705.appspot.com/"
   :license {:name "MIT License"
             :url "https://opensource.org/licenses/MIT"}
