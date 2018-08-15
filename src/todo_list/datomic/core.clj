@@ -5,14 +5,7 @@
   (:require [datomic.client.api :as d]
             [todo-list.datomic.schema :as schema]))
 
-; In the Datomic directory locally:
-; bin/run -m datomic.peer-server -h localhost -p 8998 -a myaccesskey,mysecret\ 
-; -d hello,datomic:mem://todo-list
-
-(def dev-cfg {:server-type :peer-server
-              :access-key "myaccesskey"
-              :secret "mysecret"
-              :endpoint "localhost:8998"})
+(def db-uri "datomic:dev://localhost:4334/todo-list")
 
 (def client (d/client dev-cfg))
 
